@@ -1,0 +1,2766 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>One-to-One | Sails.js Documentation</title>
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600' rel='stylesheet' type='text/css'>
+    <meta name="google-site-verification" content="6HnJJqAkInT-Kv8bSMvtGDpaaCgKLmukQqrzJUqPAZg" />
+
+    
+    <meta name="author" content="Mike McNeil and contributors" />
+
+    
+    
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-64534106-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    
+
+    <!--STYLES-->
+    <link rel="stylesheet" href="../../../../dist/production.min.eb3cbbae.css">
+    <!--STYLES END-->
+
+    <!-- setup for FB like buttons -->
+    <script>(function() {
+      var _fbq = window._fbq || (window._fbq = []);
+      if (!_fbq.loaded) {
+        var fbds = document.createElement('script');
+        fbds.async = true;
+        fbds.src = '//connect.facebook.net/en_US/fbds.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(fbds, s);
+        _fbq.loaded = true;
+      }
+      _fbq.push(['addPixelId', '600838656713699']);
+    })();
+    window._fbq = window._fbq || [];
+    window._fbq.push(['track', 'PixelInitialized', {}]);
+    </script>
+    <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=600838656713699&amp;ev=PixelInitialized" /></noscript>
+    <!-- /FB Buttons -->
+
+    <!-- for Twitter buttons -->
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    <!-- /Twitter buttons -->
+
+    <!-- Embedded Gitter -->
+    <script>
+      ((window.gitter = {}).chat = {}).options = {
+        room: 'balderdashy/sails'
+      };
+    </script>
+    <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+    <!-- /Gitter -->
+  </head>
+
+  <body ng-app="SailsWebsite">
+    <div class="header" ng-controller="HeaderCtrl">
+
+      <!--Mobile menu button-->
+      <div class="menu"
+        ng-click="intent.showMenu()"
+        ng-class="{'menu-open': menu.visible}">
+       <img class="menu-icon" src="../../../../images/icon_menu.png"/>
+      </div>
+
+      <!--Navigation list-->
+      <div class="nav-container">
+        <div class="branding">
+          <a href="http://sailsjs.org/">
+            <img class="logo" src="../../../../images/logo_sails.png" alt="Sails logo" />
+          </a>
+          <span class="version">v0.12</span>
+        </div>
+        <div class="nav-overlay" ng-class="{'menu-open': menu.visible}">
+          <div class="veil" ng-click="intent.hideMenu()"></div>
+        </div>
+        <ul class="nav" ng-class="{'menu-open': menu.visible}"
+        ng-swipe-right="intent.hideMenu()">
+          <li class="mobile-only">
+            <a class="sails-site"
+              ng-click="intent.goTo('/')"
+              ng-class="{current: getIsCurrentPage('')}"
+              href="http://sailsjs.org/">Home</a>
+          </li>
+          <li>
+            <a class="sails-site"
+              ng-click="intent.goTo('/get-started')"
+              ng-class="{current: getIsCurrentPage('get-started')}"
+              href="http://sailsjs.org/get-started">Get Started</a>
+          </li>
+          <li>
+            <a class="sails-site"
+              ng-click="intent.goTo('/features')"
+              ng-class="{current: getIsCurrentPage('features')}"
+              href="http://sailsjs.org/features">Features</a>
+          </li>
+          <li>
+            <a class="sails-site"
+              ng-click="intent.goTo('/documentation')"
+              ng-class="{current: getIsDocumentationPage()}"
+              href="http://sailsjs.org/documentation">Documentation</a>
+          </li>
+          <li>
+            <a class="sails-site"
+              ng-click="intent.goTo('/support')"
+              ng-class="{current: getIsSupportPage()}"
+              href="http://sailsjs.org/support">Support</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="wrap">
+      
+<script>
+window.MENU_DATA = [{"path":"concepts/extending-sails/Adapters/Adapters.ejs","slug":"concepts/extending-sails/adapters","displayName":"Adapters","children":["concepts/extending-sails/adapters/adapterlist.ejs","concepts/extending-sails/adapters/customadapters.ejs"],"id":"concepts-extending-sails-adapters","parent":"concepts/extending-sails/extending-sails.ejs","isChild":true,"isParent":true,"displayNameSlug":"adapters","parentDisplayName":"Adapters","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Assets/Assets.ejs","slug":"concepts/assets","displayName":"Assets","children":["concepts/assets/defaulttasks.ejs","concepts/assets/disablinggrunt.ejs","concepts/assets/taskautomation.ejs"],"id":"concepts-assets","parent":"","isChild":false,"isParent":true,"displayNameSlug":"assets","parentDisplayName":"Assets","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/ORM/Associations/Associations.ejs","slug":"concepts/models-and-orm/associations","displayName":"Associations","children":["concepts/orm/associations/manytomany.ejs","concepts/orm/associations/dominance.ejs","concepts/orm/associations/onetomany.ejs","concepts/orm/associations/onewayassociation.ejs","concepts/orm/associations/onetoone.ejs","concepts/orm/associations/throughassociations.ejs"],"id":"concepts-models-and-orm-associations","parent":"concepts/ORM/ORM.ejs","isChild":true,"isParent":true,"displayNameSlug":"associations","parentDisplayName":"Associations","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Blueprints/Blueprints.ejs","slug":"concepts/blueprints","displayName":"Blueprints","children":["concepts/blueprints/blueprint actions.ejs","concepts/blueprints/blueprint routes.ejs"],"id":"concepts-blueprints","parent":"","isChild":false,"isParent":true,"displayNameSlug":"blueprints","parentDisplayName":"Blueprints","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/0home/0home.ejs","slug":"concepts/","displayName":"Concepts: Table of Contents","children":[],"id":"concepts-","parent":"","isChild":false,"isParent":true,"displayNameSlug":"concepts:-table-of-contents","parentDisplayName":"0home","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Configuration/Configuration.ejs","slug":"concepts/configuration","displayName":"Configuration","children":["concepts/configuration/localjsfile.ejs","concepts/configuration/usingsailsrcfiles.ejs"],"id":"concepts-configuration","parent":"","isChild":false,"isParent":true,"displayNameSlug":"configuration","parentDisplayName":"Configuration","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Controllers/Controllers.ejs","slug":"concepts/controllers","displayName":"Controllers","children":["concepts/controllers/generatingcontrollers.ejs","concepts/controllers/routingtocontrollers.ejs"],"id":"concepts-controllers","parent":"","isChild":false,"isParent":true,"displayNameSlug":"controllers","parentDisplayName":"Controllers","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Custom Responses/Custom Responses.ejs","slug":"concepts/custom-responses","displayName":"Custom Responses","children":["concepts/custom responses/addingcustomresponse.ejs","concepts/custom responses/defaultresponses.ejs"],"id":"concepts-custom-responses","parent":"","isChild":false,"isParent":true,"displayNameSlug":"custom-responses","parentDisplayName":"Custom Responses","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Deployment/Deployment.ejs","slug":"concepts/deployment","displayName":"Deployment","children":["concepts/deployment/faq.ejs","concepts/deployment/hosting.ejs","concepts/deployment/scaling.ejs"],"id":"concepts-deployment","parent":"","isChild":false,"isParent":true,"displayNameSlug":"deployment","parentDisplayName":"Deployment","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/extending-sails/extending-sails.ejs","slug":"concepts/extending-sails","displayName":"Extending Sails","children":["concepts/extending-sails/generators/generators.ejs","concepts/extending-sails/adapters/adapters.ejs","concepts/extending-sails/hooks/hooks.ejs"],"id":"concepts-extending-sails","parent":"","isChild":false,"isParent":true,"displayNameSlug":"extending-sails","parentDisplayName":"extending-sails","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/File Uploads/File Uploads.ejs","slug":"concepts/file-uploads","displayName":"File Uploads","children":["concepts/file uploads/uploading-to-amazon-s3.ejs","concepts/file uploads/uploading-to-mongo-gridfs.ejs"],"id":"concepts-file-uploads","parent":"","isChild":false,"isParent":true,"displayNameSlug":"file-uploads","parentDisplayName":"File Uploads","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/extending-sails/Generators/Generators.ejs","slug":"concepts/extending-sails/generators","displayName":"Generators","children":["concepts/extending-sails/generators/generatorlist.ejs","concepts/extending-sails/generators/customgenerators.ejs"],"id":"concepts-extending-sails-generators","parent":"concepts/extending-sails/extending-sails.ejs","isChild":true,"isParent":true,"displayNameSlug":"generators","parentDisplayName":"Generators","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Globals/Globals.ejs","slug":"concepts/globals","displayName":"Globals","children":["concepts/globals/disablingglobals.ejs"],"id":"concepts-globals","parent":"","isChild":false,"isParent":true,"displayNameSlug":"globals","parentDisplayName":"Globals","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/extending-sails/Hooks/hookspec/hookspec.ejs","slug":"concepts/extending-sails/hooks/hook-specification","displayName":"Hook Specification","children":["concepts/extending-sails/hooks/hookspec/defaults.ejs","concepts/extending-sails/hooks/hookspec/configure.ejs","concepts/extending-sails/hooks/hookspec/routes.ejs","concepts/extending-sails/hooks/hookspec/initialize.ejs"],"id":"concepts-extending-sails-hooks-hook-specification","parent":"concepts/extending-sails/Hooks/Hooks.ejs","isChild":true,"isParent":true,"displayNameSlug":"hook-specification","parentDisplayName":"hookspec","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/extending-sails/Hooks/Hooks.ejs","slug":"concepts/extending-sails/hooks","displayName":"Hooks","children":["concepts/extending-sails/hooks/hookspec/hookspec.ejs","concepts/extending-sails/hooks/installablehooks.ejs","concepts/extending-sails/hooks/usinghooks.ejs","concepts/extending-sails/hooks/projecthooks.ejs"],"id":"concepts-extending-sails-hooks","parent":"concepts/extending-sails/extending-sails.ejs","isChild":true,"isParent":true,"displayNameSlug":"hooks","parentDisplayName":"Hooks","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Internationalization/Internationalization.ejs","slug":"concepts/internationalization","displayName":"Internationalization","children":["concepts/internationalization/translatingdynamiccontent.ejs","concepts/internationalization/locales.ejs"],"id":"concepts-internationalization","parent":"","isChild":false,"isParent":true,"displayNameSlug":"internationalization","parentDisplayName":"Internationalization","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Logging/Logging.ejs","slug":"concepts/logging","displayName":"Logging","children":["concepts/logging/custom log messages.ejs"],"id":"concepts-logging","parent":"","isChild":false,"isParent":true,"displayNameSlug":"logging","parentDisplayName":"Logging","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Middleware/Middleware.ejs","slug":"concepts/middleware","displayName":"Middleware","children":["concepts/middleware/conventionaldefaults.ejs"],"id":"concepts-middleware","parent":"","isChild":false,"isParent":true,"displayNameSlug":"middleware","parentDisplayName":"Middleware","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/ORM/ORM.ejs","slug":"concepts/models-and-orm","displayName":"Models and ORM","children":["concepts/orm/associations/associations.ejs","concepts/orm/attributes.ejs","concepts/orm/lifecyclecallbacks.ejs","concepts/orm/models.ejs","concepts/orm/model-settings.ejs","concepts/orm/querylanguage.ejs","concepts/orm/validations.ejs"],"id":"concepts-models-and-orm","parent":"","isChild":false,"isParent":true,"displayNameSlug":"models-and-orm","parentDisplayName":"ORM","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Policies/Policies.ejs","slug":"concepts/policies","displayName":"Policies","children":["concepts/policies/sailsandpassport.ejs"],"id":"concepts-policies","parent":"","isChild":false,"isParent":true,"displayNameSlug":"policies","parentDisplayName":"Policies","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Programmatic Usage/Programmatic Usage.ejs","slug":"concepts/programmatic-usage","displayName":"Programmatic Usage","children":["concepts/programmatic usage/tips and tricks.ejs"],"id":"concepts-programmatic-usage","parent":"","isChild":false,"isParent":true,"displayNameSlug":"programmatic-usage","parentDisplayName":"Programmatic Usage","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Realtime/Realtime.ejs","slug":"concepts/realtime","displayName":"Realtime","children":["concepts/realtime/on the server.ejs","concepts/realtime/on the client.ejs","concepts/realtime/multi-server environments.ejs"],"id":"concepts-realtime","parent":"","isChild":false,"isParent":true,"displayNameSlug":"realtime","parentDisplayName":"Realtime","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Routes/Routes.ejs","slug":"concepts/routes","displayName":"Routes","children":["concepts/routes/routetargetsyntax.ejs","concepts/routes/urlslugs.ejs"],"id":"concepts-routes","parent":"","isChild":false,"isParent":true,"displayNameSlug":"routes","parentDisplayName":"Routes","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Security/Security.ejs","slug":"concepts/security","displayName":"Security","children":["concepts/security/cors.ejs","concepts/security/csrf.ejs","concepts/security/clickjacking.ejs","concepts/security/p3p.ejs","concepts/security/ddos.ejs","concepts/security/contentsecuritypolicy.ejs","concepts/security/stricttransportsecurity.ejs","concepts/security/xss.ejs","concepts/security/sockethijacking.ejs"],"id":"concepts-security","parent":"","isChild":false,"isParent":true,"displayNameSlug":"security","parentDisplayName":"Security","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Services/Services.ejs","slug":"concepts/services","displayName":"Services","children":["concepts/services/creatingaservice.ejs"],"id":"concepts-services","parent":"","isChild":false,"isParent":true,"displayNameSlug":"services","parentDisplayName":"Services","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Testing/Testing.ejs","slug":"concepts/testing","displayName":"Testing","children":["concepts/testing/codecoverage.ejs"],"id":"concepts-testing","parent":"","isChild":false,"isParent":true,"displayNameSlug":"testing","parentDisplayName":"Testing","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Upgrading/Upgrading.ejs","slug":"concepts/upgrading","displayName":"Upgrading","children":["concepts/upgrading/to0.10.ejs","concepts/upgrading/to0.11.ejs","concepts/upgrading/to0.12.ejs"],"id":"concepts-upgrading","parent":"","isChild":false,"isParent":true,"displayNameSlug":"upgrading","parentDisplayName":"Upgrading","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Views/Views.ejs","slug":"concepts/views","displayName":"Views","children":["concepts/views/layouts.ejs","concepts/views/locals.ejs","concepts/views/partials.ejs","concepts/views/viewengines.ejs"],"id":"concepts-views","parent":"","isChild":false,"isParent":true,"displayNameSlug":"views","parentDisplayName":"Views","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/extending-sails/Hooks/hookspec/configure.ejs","slug":"concepts/extending-sails/hooks/hook-specification/configure","displayName":".configure()","children":[],"id":"concepts-extending-sails-hooks-hook-specification-configure","parent":"concepts/extending-sails/Hooks/hookspec/hookspec.ejs","isChild":true,"isParent":false,"displayNameSlug":"pointconfigure()","parentDisplayName":"hookspec","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/extending-sails/Hooks/hookspec/defaults.ejs","slug":"concepts/extending-sails/hooks/hook-specification/defaults","displayName":".defaults","children":[],"id":"concepts-extending-sails-hooks-hook-specification-defaults","parent":"concepts/extending-sails/Hooks/hookspec/hookspec.ejs","isChild":true,"isParent":false,"displayNameSlug":"pointdefaults","parentDisplayName":"hookspec","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/extending-sails/Hooks/hookspec/initialize.ejs","slug":"concepts/extending-sails/hooks/hook-specification/initialize","displayName":".initialize()","children":[],"id":"concepts-extending-sails-hooks-hook-specification-initialize","parent":"concepts/extending-sails/Hooks/hookspec/hookspec.ejs","isChild":true,"isParent":false,"displayNameSlug":"pointinitialize()","parentDisplayName":"hookspec","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/extending-sails/Hooks/hookspec/routes.ejs","slug":"concepts/extending-sails/hooks/hook-specification/routes","displayName":".routes","children":[],"id":"concepts-extending-sails-hooks-hook-specification-routes","parent":"concepts/extending-sails/Hooks/hookspec/hookspec.ejs","isChild":true,"isParent":false,"displayNameSlug":"pointroutes","parentDisplayName":"hookspec","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Custom Responses/AddingCustomResponse.ejs","slug":"concepts/custom-responses/adding-a-custom-response","displayName":"Adding a Custom Response","children":[],"id":"concepts-custom-responses-adding-a-custom-response","parent":"concepts/Custom Responses/Custom Responses.ejs","isChild":true,"isParent":false,"displayNameSlug":"adding-a-custom-response","parentDisplayName":"Custom Responses","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/ORM/Attributes.ejs","slug":"concepts/models-and-orm/attributes","displayName":"Attributes","children":[],"id":"concepts-models-and-orm-attributes","parent":"concepts/ORM/ORM.ejs","isChild":true,"isParent":false,"displayNameSlug":"attributes","parentDisplayName":"ORM","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/extending-sails/Adapters/adapterList.ejs","slug":"concepts/extending-sails/adapters/available-adapters","displayName":"Available Adapters","children":[],"id":"concepts-extending-sails-adapters-available-adapters","parent":"concepts/extending-sails/Adapters/Adapters.ejs","isChild":true,"isParent":false,"displayNameSlug":"available-adapters","parentDisplayName":"Adapters","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/extending-sails/Generators/generatorList.ejs","slug":"concepts/extending-sails/generators/available-generators","displayName":"Available Generators","children":[],"id":"concepts-extending-sails-generators-available-generators","parent":"concepts/extending-sails/Generators/Generators.ejs","isChild":true,"isParent":false,"displayNameSlug":"available-generators","parentDisplayName":"Generators","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Blueprints/Blueprint Actions.ejs","slug":"concepts/blueprints/blueprint-actions","displayName":"Blueprint Actions","children":[],"id":"concepts-blueprints-blueprint-actions","parent":"concepts/Blueprints/Blueprints.ejs","isChild":true,"isParent":false,"displayNameSlug":"blueprint-actions","parentDisplayName":"Blueprints","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Blueprints/Blueprint Routes.ejs","slug":"concepts/blueprints/blueprint-routes","displayName":"Blueprint Routes","children":[],"id":"concepts-blueprints-blueprint-routes","parent":"concepts/Blueprints/Blueprints.ejs","isChild":true,"isParent":false,"displayNameSlug":"blueprint-routes","parentDisplayName":"Blueprints","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Security/CORS.ejs","slug":"concepts/security/cors","displayName":"CORS","children":[],"id":"concepts-security-cors","parent":"concepts/Security/Security.ejs","isChild":true,"isParent":false,"displayNameSlug":"cors","parentDisplayName":"Security","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Security/CSRF.ejs","slug":"concepts/security/csrf","displayName":"CSRF","children":[],"id":"concepts-security-csrf","parent":"concepts/Security/Security.ejs","isChild":true,"isParent":false,"displayNameSlug":"csrf","parentDisplayName":"Security","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Security/Clickjacking.ejs","slug":"concepts/security/clickjacking","displayName":"Clickjacking","children":[],"id":"concepts-security-clickjacking","parent":"concepts/Security/Security.ejs","isChild":true,"isParent":false,"displayNameSlug":"clickjacking","parentDisplayName":"Security","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Testing/CodeCoverage.ejs","slug":"concepts/testing/code-coverage","displayName":"Code Coverage","children":[],"id":"concepts-testing-code-coverage","parent":"concepts/Testing/Testing.ejs","isChild":true,"isParent":false,"displayNameSlug":"code-coverage","parentDisplayName":"Testing","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/README.ejs","slug":"concepts/concepts-readme-ejs","displayName":"Concepts README Ejs","children":[],"id":"concepts-concepts-readme-ejs","parent":"","isChild":false,"isParent":false,"displayNameSlug":"concepts-readme-ejs","parentDisplayName":"concepts","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Security/ContentSecurityPolicy.ejs","slug":"concepts/security/content-security-policy","displayName":"Content Security Policy","children":[],"id":"concepts-security-content-security-policy","parent":"concepts/Security/Security.ejs","isChild":true,"isParent":false,"displayNameSlug":"content-security-policy","parentDisplayName":"Security","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Middleware/ConventionalDefaults.ejs","slug":"concepts/middleware/conventional-defaults","displayName":"Conventional Defaults","children":[],"id":"concepts-middleware-conventional-defaults","parent":"concepts/Middleware/Middleware.ejs","isChild":true,"isParent":false,"displayNameSlug":"conventional-defaults","parentDisplayName":"Middleware","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Services/CreatingAService.ejs","slug":"concepts/services/creating-a-service","displayName":"Creating a Service","children":[],"id":"concepts-services-creating-a-service","parent":"concepts/Services/Services.ejs","isChild":true,"isParent":false,"displayNameSlug":"creating-a-service","parentDisplayName":"Services","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/extending-sails/Adapters/customAdapters.ejs","slug":"concepts/extending-sails/adapters/custom-adapters","displayName":"Custom Adapters","children":[],"id":"concepts-extending-sails-adapters-custom-adapters","parent":"concepts/extending-sails/Adapters/Adapters.ejs","isChild":true,"isParent":false,"displayNameSlug":"custom-adapters","parentDisplayName":"Adapters","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/extending-sails/Generators/customGenerators.ejs","slug":"concepts/extending-sails/generators/custom-generators","displayName":"Custom Generators","children":[],"id":"concepts-extending-sails-generators-custom-generators","parent":"concepts/extending-sails/Generators/Generators.ejs","isChild":true,"isParent":false,"displayNameSlug":"custom-generators","parentDisplayName":"Generators","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Routes/RouteTargetSyntax.ejs","slug":"concepts/routes/custom-routes","displayName":"Custom Routes","children":[],"id":"concepts-routes-custom-routes","parent":"concepts/Routes/Routes.ejs","isChild":true,"isParent":false,"displayNameSlug":"custom-routes","parentDisplayName":"Routes","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Logging/Custom log messages.ejs","slug":"concepts/logging/custom-log-messages","displayName":"Custom log messages","children":[],"id":"concepts-logging-custom-log-messages","parent":"concepts/Logging/Logging.ejs","isChild":true,"isParent":false,"displayNameSlug":"custom-log-messages","parentDisplayName":"Logging","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Security/DDOS.ejs","slug":"concepts/security/ddos","displayName":"DDOS","children":[],"id":"concepts-security-ddos","parent":"concepts/Security/Security.ejs","isChild":true,"isParent":false,"displayNameSlug":"ddos","parentDisplayName":"Security","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Custom Responses/DefaultResponses.ejs","slug":"concepts/custom-responses/default-responses","displayName":"Default Responses","children":[],"id":"concepts-custom-responses-default-responses","parent":"concepts/Custom Responses/Custom Responses.ejs","isChild":true,"isParent":false,"displayNameSlug":"default-responses","parentDisplayName":"Custom Responses","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Assets/DefaultTasks.ejs","slug":"concepts/assets/default-tasks","displayName":"Default Tasks","children":[],"id":"concepts-assets-default-tasks","parent":"concepts/Assets/Assets.ejs","isChild":true,"isParent":false,"displayNameSlug":"default-tasks","parentDisplayName":"Assets","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Globals/DisablingGlobals.ejs","slug":"concepts/globals/disabling-globals","displayName":"Disabling Globals","children":[],"id":"concepts-globals-disabling-globals","parent":"concepts/Globals/Globals.ejs","isChild":true,"isParent":false,"displayNameSlug":"disabling-globals","parentDisplayName":"Globals","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Assets/DisablingGrunt.ejs","slug":"concepts/assets/disabling-grunt","displayName":"Disabling Grunt","children":[],"id":"concepts-assets-disabling-grunt","parent":"concepts/Assets/Assets.ejs","isChild":true,"isParent":false,"displayNameSlug":"disabling-grunt","parentDisplayName":"Assets","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/ORM/Associations/Dominance.ejs","slug":"concepts/models-and-orm/associations/dominance","displayName":"Dominance","children":[],"id":"concepts-models-and-orm-associations-dominance","parent":"concepts/ORM/Associations/Associations.ejs","isChild":true,"isParent":false,"displayNameSlug":"dominance","parentDisplayName":"Associations","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Deployment/FAQ.ejs","slug":"concepts/deployment/faq","displayName":"FAQ","children":[],"id":"concepts-deployment-faq","parent":"concepts/Deployment/Deployment.ejs","isChild":true,"isParent":false,"displayNameSlug":"faq","parentDisplayName":"Deployment","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Controllers/GeneratingControllers.ejs","slug":"concepts/controllers/generating-controllers","displayName":"Generating Controllers","children":[],"id":"concepts-controllers-generating-controllers","parent":"concepts/Controllers/Controllers.ejs","isChild":true,"isParent":false,"displayNameSlug":"generating-controllers","parentDisplayName":"Controllers","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Deployment/Hosting.ejs","slug":"concepts/deployment/hosting","displayName":"Hosting","children":[],"id":"concepts-deployment-hosting","parent":"concepts/Deployment/Deployment.ejs","isChild":true,"isParent":false,"displayNameSlug":"hosting","parentDisplayName":"Deployment","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/extending-sails/Hooks/installablehooks.ejs","slug":"concepts/extending-sails/hooks/installable-hooks","displayName":"Installable Hooks","children":[],"id":"concepts-extending-sails-hooks-installable-hooks","parent":"concepts/extending-sails/Hooks/Hooks.ejs","isChild":true,"isParent":false,"displayNameSlug":"installable-hooks","parentDisplayName":"Hooks","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Views/Layouts.ejs","slug":"concepts/views/layouts","displayName":"Layouts","children":[],"id":"concepts-views-layouts","parent":"concepts/Views/Views.ejs","isChild":true,"isParent":false,"displayNameSlug":"layouts","parentDisplayName":"Views","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/ORM/Lifecyclecallbacks.ejs","slug":"concepts/models-and-orm/lifecycle-callbacks","displayName":"Lifecycle callbacks","children":[],"id":"concepts-models-and-orm-lifecycle-callbacks","parent":"concepts/ORM/ORM.ejs","isChild":true,"isParent":false,"displayNameSlug":"lifecycle-callbacks","parentDisplayName":"ORM","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Internationalization/Locales.ejs","slug":"concepts/internationalization/locales","displayName":"Locales","children":[],"id":"concepts-internationalization-locales","parent":"concepts/Internationalization/Internationalization.ejs","isChild":true,"isParent":false,"displayNameSlug":"locales","parentDisplayName":"Internationalization","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Views/Locals.ejs","slug":"concepts/views/locals","displayName":"Locals","children":[],"id":"concepts-views-locals","parent":"concepts/Views/Views.ejs","isChild":true,"isParent":false,"displayNameSlug":"locals","parentDisplayName":"Views","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/ORM/Associations/ManytoMany.ejs","slug":"concepts/models-and-orm/associations/many-to-many","displayName":"Many-to-Many","children":[],"id":"concepts-models-and-orm-associations-many-to-many","parent":"concepts/ORM/Associations/Associations.ejs","isChild":true,"isParent":false,"displayNameSlug":"many-to-many","parentDisplayName":"Associations","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/ORM/model-settings.ejs","slug":"concepts/models-and-orm/model-settings","displayName":"Model Settings","children":[],"id":"concepts-models-and-orm-model-settings","parent":"concepts/ORM/ORM.ejs","isChild":true,"isParent":false,"displayNameSlug":"model-settings","parentDisplayName":"ORM","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/ORM/Models.ejs","slug":"concepts/models-and-orm/models","displayName":"Models","children":[],"id":"concepts-models-and-orm-models","parent":"concepts/ORM/ORM.ejs","isChild":true,"isParent":false,"displayNameSlug":"models","parentDisplayName":"ORM","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Realtime/Multi-server environments.ejs","slug":"concepts/realtime/multi-server-environments","displayName":"Multi-server environments","children":[],"id":"concepts-realtime-multi-server-environments","parent":"concepts/Realtime/Realtime.ejs","isChild":true,"isParent":false,"displayNameSlug":"multi-server-environments","parentDisplayName":"Realtime","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Realtime/On the client.ejs","slug":"concepts/realtime/on-the-client","displayName":"On the client","children":[],"id":"concepts-realtime-on-the-client","parent":"concepts/Realtime/Realtime.ejs","isChild":true,"isParent":false,"displayNameSlug":"on-the-client","parentDisplayName":"Realtime","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Realtime/On the server.ejs","slug":"concepts/realtime/on-the-server","displayName":"On the server","children":[],"id":"concepts-realtime-on-the-server","parent":"concepts/Realtime/Realtime.ejs","isChild":true,"isParent":false,"displayNameSlug":"on-the-server","parentDisplayName":"Realtime","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/ORM/Associations/OneWayAssociation.ejs","slug":"concepts/models-and-orm/associations/one-way-association","displayName":"One Way Association","children":[],"id":"concepts-models-and-orm-associations-one-way-association","parent":"concepts/ORM/Associations/Associations.ejs","isChild":true,"isParent":false,"displayNameSlug":"one-way-association","parentDisplayName":"Associations","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/ORM/Associations/OnetoMany.ejs","slug":"concepts/models-and-orm/associations/one-to-many","displayName":"One-to-Many","children":[],"id":"concepts-models-and-orm-associations-one-to-many","parent":"concepts/ORM/Associations/Associations.ejs","isChild":true,"isParent":false,"displayNameSlug":"one-to-many","parentDisplayName":"Associations","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/ORM/Associations/OnetoOne.ejs","slug":"concepts/models-and-orm/associations/one-to-one","displayName":"One-to-One","children":[],"id":"concepts-models-and-orm-associations-one-to-one","parent":"concepts/ORM/Associations/Associations.ejs","isChild":true,"isParent":false,"displayNameSlug":"one-to-one","parentDisplayName":"Associations","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Security/P3P.ejs","slug":"concepts/security/p-3-p","displayName":"P3P","children":[],"id":"concepts-security-p-3-p","parent":"concepts/Security/Security.ejs","isChild":true,"isParent":false,"displayNameSlug":"p3p","parentDisplayName":"Security","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Views/Partials.ejs","slug":"concepts/views/partials","displayName":"Partials","children":[],"id":"concepts-views-partials","parent":"concepts/Views/Views.ejs","isChild":true,"isParent":false,"displayNameSlug":"partials","parentDisplayName":"Views","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/extending-sails/Hooks/projecthooks.ejs","slug":"concepts/extending-sails/hooks/project-hooks","displayName":"Project Hooks","children":[],"id":"concepts-extending-sails-hooks-project-hooks","parent":"concepts/extending-sails/Hooks/Hooks.ejs","isChild":true,"isParent":false,"displayNameSlug":"project-hooks","parentDisplayName":"Hooks","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/ORM/Querylanguage.ejs","slug":"concepts/models-and-orm/query-language","displayName":"Query Language","children":[],"id":"concepts-models-and-orm-query-language","parent":"concepts/ORM/ORM.ejs","isChild":true,"isParent":false,"displayNameSlug":"query-language","parentDisplayName":"ORM","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Controllers/RoutingToControllers.ejs","slug":"concepts/controllers/routing-to-controllers","displayName":"Routing to Controllers","children":[],"id":"concepts-controllers-routing-to-controllers","parent":"concepts/Controllers/Controllers.ejs","isChild":true,"isParent":false,"displayNameSlug":"routing-to-controllers","parentDisplayName":"Controllers","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Policies/SailsAndPassport.ejs","slug":"concepts/policies/sails-passport","displayName":"Sails + Passport","children":[],"id":"concepts-policies-sails-passport","parent":"concepts/Policies/Policies.ejs","isChild":true,"isParent":false,"displayNameSlug":"sails-+-passport","parentDisplayName":"Policies","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Deployment/Scaling.ejs","slug":"concepts/deployment/scaling","displayName":"Scaling","children":[],"id":"concepts-deployment-scaling","parent":"concepts/Deployment/Deployment.ejs","isChild":true,"isParent":false,"displayNameSlug":"scaling","parentDisplayName":"Deployment","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Sessions/sessions.ejs","slug":"concepts/sessions","displayName":"Sessions","children":[],"id":"concepts-sessions","parent":"","isChild":false,"isParent":false,"displayNameSlug":"sessions","parentDisplayName":"Sessions","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Security/SocketHijacking.ejs","slug":"concepts/security/socket-hijacking","displayName":"Socket Hijacking","children":[],"id":"concepts-security-socket-hijacking","parent":"concepts/Security/Security.ejs","isChild":true,"isParent":false,"displayNameSlug":"socket-hijacking","parentDisplayName":"Security","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Security/StrictTransportSecurity.ejs","slug":"concepts/security/strict-transport-security","displayName":"Strict Transport Security","children":[],"id":"concepts-security-strict-transport-security","parent":"concepts/Security/Security.ejs","isChild":true,"isParent":false,"displayNameSlug":"strict-transport-security","parentDisplayName":"Security","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Assets/TaskAutomation.ejs","slug":"concepts/assets/task-automation","displayName":"Task Automation","children":[],"id":"concepts-assets-task-automation","parent":"concepts/Assets/Assets.ejs","isChild":true,"isParent":false,"displayNameSlug":"task-automation","parentDisplayName":"Assets","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Configuration/localjsfile.ejs","slug":"concepts/configuration/the-local-js-file","displayName":"The local.js file","children":[],"id":"concepts-configuration-the-local-js-file","parent":"concepts/Configuration/Configuration.ejs","isChild":true,"isParent":false,"displayNameSlug":"the-localpointjs-file","parentDisplayName":"Configuration","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/ORM/Associations/ThroughAssociations.ejs","slug":"concepts/models-and-orm/associations/through-associations","displayName":"Through Associations","children":[],"id":"concepts-models-and-orm-associations-through-associations","parent":"concepts/ORM/Associations/Associations.ejs","isChild":true,"isParent":false,"displayNameSlug":"through-associations","parentDisplayName":"Associations","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Programmatic Usage/Tips and Tricks.ejs","slug":"concepts/programmatic-usage/tips-and-tricks","displayName":"Tips and Tricks","children":[],"id":"concepts-programmatic-usage-tips-and-tricks","parent":"concepts/Programmatic Usage/Programmatic Usage.ejs","isChild":true,"isParent":false,"displayNameSlug":"tips-and-tricks","parentDisplayName":"Programmatic Usage","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Upgrading/To0.10.ejs","slug":"concepts/upgrading/to-v-0-10","displayName":"To v.0.10","children":[],"id":"concepts-upgrading-to-v-0-10","parent":"concepts/Upgrading/Upgrading.ejs","isChild":true,"isParent":false,"displayNameSlug":"to-vpoint0point10","parentDisplayName":"Upgrading","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Upgrading/To0.11.ejs","slug":"concepts/upgrading/to-v-0-11","displayName":"To v0.11","children":[],"id":"concepts-upgrading-to-v-0-11","parent":"concepts/Upgrading/Upgrading.ejs","isChild":true,"isParent":false,"displayNameSlug":"to-v0point11","parentDisplayName":"Upgrading","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Upgrading/To0.12.ejs","slug":"concepts/upgrading/to-v-0-12","displayName":"To v0.12","children":[],"id":"concepts-upgrading-to-v-0-12","parent":"concepts/Upgrading/Upgrading.ejs","isChild":true,"isParent":false,"displayNameSlug":"to-v0point12","parentDisplayName":"Upgrading","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Internationalization/TranslatingDynamicContent.ejs","slug":"concepts/internationalization/translating-dynamic-content","displayName":"Translating Dynamic Content","children":[],"id":"concepts-internationalization-translating-dynamic-content","parent":"concepts/Internationalization/Internationalization.ejs","isChild":true,"isParent":false,"displayNameSlug":"translating-dynamic-content","parentDisplayName":"Internationalization","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Routes/URLSlugs.ejs","slug":"concepts/routes/url-slugs","displayName":"URL Slugs","children":[],"id":"concepts-routes-url-slugs","parent":"concepts/Routes/Routes.ejs","isChild":true,"isParent":false,"displayNameSlug":"url-slugs","parentDisplayName":"Routes","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/File Uploads/uploading-to-mongo-gridfs.ejs","slug":"concepts/file-uploads/uploading-to-grid-fs","displayName":"Uploading to GridFS","children":[],"id":"concepts-file-uploads-uploading-to-grid-fs","parent":"concepts/File Uploads/File Uploads.ejs","isChild":true,"isParent":false,"displayNameSlug":"uploading-to-gridfs","parentDisplayName":"File Uploads","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/File Uploads/uploading-to-amazon-s3.ejs","slug":"concepts/file-uploads/uploading-to-s-3","displayName":"Uploading to S3","children":[],"id":"concepts-file-uploads-uploading-to-s-3","parent":"concepts/File Uploads/File Uploads.ejs","isChild":true,"isParent":false,"displayNameSlug":"uploading-to-s3","parentDisplayName":"File Uploads","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/extending-sails/Hooks/usinghooks.ejs","slug":"concepts/extending-sails/hooks/using-hooks","displayName":"Using Hooks","children":[],"id":"concepts-extending-sails-hooks-using-hooks","parent":"concepts/extending-sails/Hooks/Hooks.ejs","isChild":true,"isParent":false,"displayNameSlug":"using-hooks","parentDisplayName":"Hooks","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Configuration/usingsailsrcfiles.ejs","slug":"concepts/configuration/using-sailsrc-files","displayName":"Using `.sailsrc` Files","children":[],"id":"concepts-configuration-using-sailsrc-files","parent":"concepts/Configuration/Configuration.ejs","isChild":true,"isParent":false,"displayNameSlug":"using-`pointsailsrc`-files","parentDisplayName":"Configuration","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/ORM/Validations.ejs","slug":"concepts/models-and-orm/validations","displayName":"Validations","children":[],"id":"concepts-models-and-orm-validations","parent":"concepts/ORM/ORM.ejs","isChild":true,"isParent":false,"displayNameSlug":"validations","parentDisplayName":"ORM","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Views/ViewEngines.ejs","slug":"concepts/views/view-engines","displayName":"View Engines","children":[],"id":"concepts-views-view-engines","parent":"concepts/Views/Views.ejs","isChild":true,"isParent":false,"displayNameSlug":"view-engines","parentDisplayName":"Views","version":"","isDeprecated":false,"isMethod":false},{"path":"concepts/Security/XSS.ejs","slug":"concepts/security/xss","displayName":"XSS","children":[],"id":"concepts-security-xss","parent":"concepts/Security/Security.ejs","isChild":true,"isParent":false,"displayNameSlug":"xss","parentDisplayName":"Security","version":"","isDeprecated":false,"isMethod":false}];
+</script>
+
+
+
+<div class="docs-main-header" ng-controller="HeaderCtrl">
+  <div class="nav-container">
+    <div class="nav-content">
+      <span class="header-title">Concepts</span>
+      <ul class="docs-header-nav">
+        <a href="http://sailsjs.org/documentation/anatomy">
+          <li ng-class="{current: getIsCurrentDocSection('anatomy')}">Anatomy</li>
+        </a>
+        <a href="http://sailsjs.org/documentation/reference/">
+          <li ng-class="{current: getIsCurrentDocSection('reference')}">Reference</li>
+        </a>
+        <a href="../../Routes.html">
+          <li ng-class="{current: getIsCurrentDocSection('concepts')}">Concepts</li>
+        </a>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="main-container reference-page" ng-controller="DocsCtrl" scrollng table-wrap>
+
+  <!-- Main content -->
+  <div class="right-column">
+    <div class="reference-item">
+      
+      <a class="pencil" href="https://github.com/balderdashy/sails-docs/edit/master/concepts/ORM/Associations/OnetoOne.md" target="_blank">Edit Page</a>
+
+      
+      <h1 id="one-to-one">One-to-One</h1>
+<p><strong>AKA &quot;Has One&quot;</strong></p>
+<h3 id="overview" permalink="overview">Overview</h3>
+<p>A one-to-one association states that a model may only be associated with one other model. In order
+for the model to know which other model it is associated with, a foreign key must be included on one of the
+records along with a <code>unique</code> database constraint on it.</p>
+<p>There are currently two ways of handling this association in Waterline.</p>
+<h3 id="has-one-using-a-collection" permalink="has-one-using-a-collection">Has One Using A Collection</h3>
+<p>In this example, we are associating a <code>Pet</code> with a <code>User</code>. The <code>User</code> may only have one <code>Pet</code> and viceversa, a <code>Pet</code> can only have one <code>User</code>. However in order to query from both sides in this example we must add a <code>collection</code> attribute to the <code>User</code> model. This allows us to call both <code>User.find().populate(&apos;pet&apos;)</code> along with <code>Pet.find().populate(&apos;owner&apos;)</code>.</p>
+<p>The two models will stay in sync by updating the <code>Pet</code> model&apos;s <code>owner</code> attribute. Adding the <code>unique</code> property ensures that only one value for each <code>owner</code> will exist in the database. The downside is that when populating from the <code>User</code> side you will always get an array back.</p>
+<pre><code data-language="javascript">// myApp/api/models/Pet.js
+module.exports = {
+  attributes: {
+    name: {
+      type: &apos;string&apos;
+    },
+    color: {
+      type: &apos;string&apos;
+    },
+    owner:{
+      model:&apos;user&apos;,
+      unique: true
+    }
+  }
+}
+</code></pre><!-- __LANG=%%__ -->
+<pre><code data-language="javascript">// myApp/api/models/User.js
+module.exports = {
+  attributes: {
+    name: {
+      type: &apos;string&apos;
+    },
+    age: {
+      type: &apos;integer&apos;
+    },
+    pet: {
+      collection:&apos;pet&apos;,
+      via: &apos;owner&apos;
+    }
+  }
+}
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="has-one-manual-sync" permalink="has-one-manual-sync">Has One Manual Sync</h3>
+<p>In this example, we are associating a <code>Pet</code> with a <code>User</code>. The <code>User</code> may only have one <code>Pet</code> and viceversa, a <code>Pet</code> can only have one <code>User</code>. However in order to query from both sides a <code>model</code> property is added to the <code>User</code> model. This allows us to call both <code>User.find().populate(&apos;pet&apos;)</code> along with <code>Pet.find().populate(&apos;owner&apos;)</code>.</p>
+<p>The two models will not stay in sync however. So when updating one side you must remember to update the other side as well.</p>
+<pre><code data-language="javascript">// myApp/api/models/Pet.js
+module.exports = {
+  attributes: {
+    name: {
+      type: &apos;string&apos;
+    },
+    color: {
+      type: &apos;string&apos;
+    },
+    owner:{
+      model:&apos;user&apos;
+    }
+  }
+}
+</code></pre><!-- __LANG=%%__ -->
+<pre><code data-language="javascript">// myApp/api/models/User.js
+module.exports = {
+  attributes: {
+    name: {
+      type: &apos;string&apos;
+    },
+    age: {
+      type: &apos;integer&apos;
+    },
+    pet: {
+      model:&apos;pet&apos;
+    }
+  }
+}
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="notes" permalink="notes">Notes</h3>
+<blockquote>
+<p>For a more detailed description of this type of association, see the <a href="https://github.com/balderdashy/waterline-docs/blob/master/models/associations/one-to-one.md" target="_blank">Waterline Docs</a></p>
+</blockquote>
+<docmeta name="displayName" value="One-to-One">
+
+</docmeta>
+      
+    </div>
+    <div class="contribution-message">
+        <h2>Is something missing?</h2>
+        <p>If you notice something we've missed or could be improved on, please follow <a href="https://github.com/balderdashy/sails-docs/blob/master/concepts/ORM/Associations/OnetoOne.md" target="_blank">this link</a> and submit a pull request to the sails-docs repo.  Once we merge it, the changes will be reflected on the website the next time it is deployed.</p>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="reference-sidebar">
+    <h4><a href="http://sailsjs.org/documentation/Concepts">Concepts</a></h4>
+    <ul class="main-sections">
+      
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/assets')}">
+          
+<span>
+  
+  <a href="../../Assets.1.html">
+
+
+    Assets
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/assets/default-tasks'), 'expanded': getIsExpanded('concepts/Assets/DefaultTasks.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../assets/default-tasks.html">
+
+
+    Default Tasks
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/assets/disabling-grunt'), 'expanded': getIsExpanded('concepts/Assets/DisablingGrunt.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../assets/disabling-grunt.html">
+
+
+    Disabling Grunt
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/assets/task-automation'), 'expanded': getIsExpanded('concepts/Assets/TaskAutomation.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../Assets/TaskAutomation.html%3Fq=task-configuration.html">
+
+
+    Task Automation
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/blueprints')}">
+          
+<span>
+  
+  <a href="../../blueprints.html">
+
+
+    Blueprints
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/blueprints/blueprint-actions'), 'expanded': getIsExpanded('concepts/Blueprints/Blueprint Actions.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../blueprints/blueprint-actions.html">
+
+
+    Blueprint Actions
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/blueprints/blueprint-routes'), 'expanded': getIsExpanded('concepts/Blueprints/Blueprint Routes.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../blueprints/blueprint-routes.html">
+
+
+    Blueprint Routes
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/configuration')}">
+          
+<span>
+  
+  <a href="../../Configuration.1.html">
+
+
+    Configuration
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/configuration/the-local-js-file'), 'expanded': getIsExpanded('concepts/Configuration/localjsfile.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../Configuration/localjsfile.html">
+
+
+    The local.js file
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/configuration/using-sailsrc-files'), 'expanded': getIsExpanded('concepts/Configuration/usingsailsrcfiles.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../Configuration/usingsailsrcfiles.html">
+
+
+    Using `.sailsrc` Files
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/controllers')}">
+          
+<span>
+  
+  <a href="../../Controllers%3Fq=actions.html">
+
+
+    Controllers
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/controllers/generating-controllers'), 'expanded': getIsExpanded('concepts/Controllers/GeneratingControllers.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../controllers/generating-controllers.html">
+
+
+    Generating Controllers
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/controllers/routing-to-controllers'), 'expanded': getIsExpanded('concepts/Controllers/RoutingToControllers.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../controllers/routing-to-controllers.html">
+
+
+    Routing to Controllers
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/custom-responses')}">
+          
+<span>
+  
+  <a href="../../Custom-Responses.html">
+
+
+    Custom Responses
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/custom-responses/adding-a-custom-response'), 'expanded': getIsExpanded('concepts/Custom Responses/AddingCustomResponse.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../custom-responses/adding-a-custom-response.html">
+
+
+    Adding a Custom Response
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/custom-responses/default-responses'), 'expanded': getIsExpanded('concepts/Custom Responses/DefaultResponses.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../custom-responses/default-responses.html">
+
+
+    Default Responses
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/deployment')}">
+          
+<span>
+  
+  <a href="../../deployment.html">
+
+
+    Deployment
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/deployment/faq'), 'expanded': getIsExpanded('concepts/Deployment/FAQ.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../deployment/faq.html">
+
+
+    FAQ
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/deployment/hosting'), 'expanded': getIsExpanded('concepts/Deployment/Hosting.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../deployment/Hosting.html">
+
+
+    Hosting
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/deployment/scaling'), 'expanded': getIsExpanded('concepts/Deployment/Scaling.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../deployment/scaling.html">
+
+
+    Scaling
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails')}">
+          
+<span>
+  
+  <a href="../../extending-sails.html">
+
+
+    Extending Sails
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails/generators'), 'expanded': getIsExpanded('concepts/extending-sails/Generators/Generators.ejs'), 'folder': true, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../extending-sails/Generators.html">
+
+
+    Generators
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails/generators/available-generators'), 'expanded': getIsExpanded('concepts/extending-sails/Generators/generatorList.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../extending-sails/generators/available-generators.html">
+
+
+    Available Generators
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails/generators/custom-generators'), 'expanded': getIsExpanded('concepts/extending-sails/Generators/customGenerators.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../extending-sails/generators/custom-generators.html">
+
+
+    Custom Generators
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails/adapters'), 'expanded': getIsExpanded('concepts/extending-sails/Adapters/Adapters.ejs'), 'folder': true, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../extending-sails/Adapters.html">
+
+
+    Adapters
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails/adapters/available-adapters'), 'expanded': getIsExpanded('concepts/extending-sails/Adapters/adapterList.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../extending-sails/adapters/available-adapters.html">
+
+
+    Available Adapters
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails/adapters/custom-adapters'), 'expanded': getIsExpanded('concepts/extending-sails/Adapters/customAdapters.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../extending-sails/adapters/custom-adapters.html">
+
+
+    Custom Adapters
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails/hooks'), 'expanded': getIsExpanded('concepts/extending-sails/Hooks/Hooks.ejs'), 'folder': true, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../extending-sails/Hooks%3Fq=types-of-hooks.html">
+
+
+    Hooks
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails/hooks/hook-specification'), 'expanded': getIsExpanded('concepts/extending-sails/Hooks/hookspec/hookspec.ejs'), 'folder': true, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../extending-sails/hooks/hook-specification.html">
+
+
+    Hook Specification
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails/hooks/hook-specification/defaults'), 'expanded': getIsExpanded('concepts/extending-sails/Hooks/hookspec/defaults.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../extending-sails/Hooks/hookspec/defaults.html">
+
+
+    .defaults
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails/hooks/hook-specification/configure'), 'expanded': getIsExpanded('concepts/extending-sails/Hooks/hookspec/configure.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../extending-sails/Hooks/hookspec/configure.html">
+
+
+    .configure()
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails/hooks/hook-specification/routes'), 'expanded': getIsExpanded('concepts/extending-sails/Hooks/hookspec/routes.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../extending-sails/Hooks/hookspec/routes.html">
+
+
+    .routes
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails/hooks/hook-specification/initialize'), 'expanded': getIsExpanded('concepts/extending-sails/Hooks/hookspec/initialize.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../extending-sails/Hooks/hookspec/initialize.html">
+
+
+    .initialize()
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails/hooks/installable-hooks'), 'expanded': getIsExpanded('concepts/extending-sails/Hooks/installablehooks.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../extending-sails/Hooks/installablehooks.html">
+
+
+    Installable Hooks
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails/hooks/using-hooks'), 'expanded': getIsExpanded('concepts/extending-sails/Hooks/usinghooks.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../extending-sails/Hooks/usinghooks.html%3Fq=changing-the-way-sails-loads-an-installable-hook.html">
+
+
+    Using Hooks
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/extending-sails/hooks/project-hooks'), 'expanded': getIsExpanded('concepts/extending-sails/Hooks/projecthooks.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../extending-sails/Hooks/projecthooks.html">
+
+
+    Project Hooks
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/file-uploads')}">
+          
+<span>
+  
+  <a href="../../file-uploads.html">
+
+
+    File Uploads
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/file-uploads/uploading-to-s-3'), 'expanded': getIsExpanded('concepts/File Uploads/uploading-to-amazon-s3.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../file-uploads/uploading-to-s-3.html">
+
+
+    Uploading to S3
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/file-uploads/uploading-to-grid-fs'), 'expanded': getIsExpanded('concepts/File Uploads/uploading-to-mongo-gridfs.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../file-uploads/uploading-to-grid-fs.html">
+
+
+    Uploading to GridFS
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/globals')}">
+          
+<span>
+  
+  <a href="../../Globals%3Fq=disabling-globals.html">
+
+
+    Globals
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/globals/disabling-globals'), 'expanded': getIsExpanded('concepts/Globals/DisablingGlobals.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../globals/disabling-globals.html">
+
+
+    Disabling Globals
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/internationalization')}">
+          
+<span>
+  
+  <a href="../../Internationalization.html">
+
+
+    Internationalization
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/internationalization/translating-dynamic-content'), 'expanded': getIsExpanded('concepts/Internationalization/TranslatingDynamicContent.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../internationalization/translating-dynamic-content.html">
+
+
+    Translating Dynamic Content
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/internationalization/locales'), 'expanded': getIsExpanded('concepts/Internationalization/Locales.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../internationalization/locales.html">
+
+
+    Locales
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/logging')}">
+          
+<span>
+  
+  <a href="../../logging.html">
+
+
+    Logging
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/logging/custom-log-messages'), 'expanded': getIsExpanded('concepts/Logging/Custom log messages.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../logging/custom-log-messages.html">
+
+
+    Custom log messages
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/middleware')}">
+          
+<span>
+  
+  <a href="../../Middleware.html">
+
+
+    Middleware
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/middleware/conventional-defaults'), 'expanded': getIsExpanded('concepts/Middleware/ConventionalDefaults.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../middleware/conventional-defaults.html">
+
+
+    Conventional Defaults
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="expanded current-parent" ng-class="{'current': getIsCurrent('concepts/models-and-orm')}">
+          
+<span>
+  
+  <a href="../../models-and-orm.html">
+
+
+    Models and ORM
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="expanded current-parent" ng-class="{'current': getIsCurrent('concepts/models-and-orm/associations'), 'expanded': getIsExpanded('concepts/ORM/Associations/Associations.ejs'), 'folder': true, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../associations.html">
+
+
+    Associations
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/models-and-orm/associations/many-to-many'), 'expanded': getIsExpanded('concepts/ORM/Associations/ManytoMany.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="many-to-many.html">
+
+
+    Many-to-Many
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/models-and-orm/associations/dominance'), 'expanded': getIsExpanded('concepts/ORM/Associations/Dominance.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="dominance.html">
+
+
+    Dominance
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/models-and-orm/associations/one-to-many'), 'expanded': getIsExpanded('concepts/ORM/Associations/OnetoMany.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="one-to-many.html">
+
+
+    One-to-Many
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/models-and-orm/associations/one-way-association'), 'expanded': getIsExpanded('concepts/ORM/Associations/OneWayAssociation.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="one-way-association.html">
+
+
+    One Way Association
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="expanded" ng-class="{'current': getIsCurrent('concepts/models-and-orm/associations/one-to-one'), 'expanded': getIsExpanded('concepts/ORM/Associations/OnetoOne.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="one-to-one.html">
+
+
+    One-to-One
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/models-and-orm/associations/through-associations'), 'expanded': getIsExpanded('concepts/ORM/Associations/ThroughAssociations.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="through-associations.html">
+
+
+    Through Associations
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/models-and-orm/attributes'), 'expanded': getIsExpanded('concepts/ORM/Attributes.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../ORM/Attributes.html">
+
+
+    Attributes
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/models-and-orm/lifecycle-callbacks'), 'expanded': getIsExpanded('concepts/ORM/Lifecyclecallbacks.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../lifecycle-callbacks.html">
+
+
+    Lifecycle callbacks
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/models-and-orm/models'), 'expanded': getIsExpanded('concepts/ORM/Models.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../ORM/Models.html">
+
+
+    Models
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/models-and-orm/model-settings'), 'expanded': getIsExpanded('concepts/ORM/model-settings.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../ORM/model-settings.html%3Fq=tablename.html">
+
+
+    Model Settings
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/models-and-orm/query-language'), 'expanded': getIsExpanded('concepts/ORM/Querylanguage.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../query-language.html">
+
+
+    Query Language
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/models-and-orm/validations'), 'expanded': getIsExpanded('concepts/ORM/Validations.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../validations.html">
+
+
+    Validations
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/policies')}">
+          
+<span>
+  
+  <a href="../../Policies.html">
+
+
+    Policies
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/policies/sails-passport'), 'expanded': getIsExpanded('concepts/Policies/SailsAndPassport.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../policies/sails-passport.html">
+
+
+    Sails + Passport
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/programmatic-usage')}">
+          
+<span>
+  
+  <a href="../../programmatic-usage.html">
+
+
+    Programmatic Usage
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/programmatic-usage/tips-and-tricks'), 'expanded': getIsExpanded('concepts/Programmatic Usage/Tips and Tricks.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../programmatic-usage/tips-and-tricks.html">
+
+
+    Tips and Tricks
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/realtime')}">
+          
+<span>
+  
+  <a href="../../realtime.html">
+
+
+    Realtime
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/realtime/on-the-server'), 'expanded': getIsExpanded('concepts/Realtime/On the server.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../realtime/on-the-server.html">
+
+
+    On the server
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/realtime/on-the-client'), 'expanded': getIsExpanded('concepts/Realtime/On the client.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../realtime/on-the-client.html">
+
+
+    On the client
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/realtime/multi-server-environments'), 'expanded': getIsExpanded('concepts/Realtime/Multi-server environments.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../realtime/multi-server-environments.html">
+
+
+    Multi-server environments
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/routes')}">
+          
+<span>
+  
+  <a href="http://sailsjs.org/documentation/concepts/routes">
+
+
+    Routes
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/routes/custom-routes'), 'expanded': getIsExpanded('concepts/Routes/RouteTargetSyntax.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../Routes/RouteTargetSyntax.html%3Fq=response-target-syntax.html">
+
+
+    Custom Routes
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/routes/url-slugs'), 'expanded': getIsExpanded('concepts/Routes/URLSlugs.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../Routes/URLSlugs.html">
+
+
+    URL Slugs
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/security')}">
+          
+<span>
+  
+  <a href="../../security.html">
+
+
+    Security
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/security/cors'), 'expanded': getIsExpanded('concepts/Security/CORS.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../security/cors.html">
+
+
+    CORS
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/security/csrf'), 'expanded': getIsExpanded('concepts/Security/CSRF.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../security/csrf.html">
+
+
+    CSRF
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/security/clickjacking'), 'expanded': getIsExpanded('concepts/Security/Clickjacking.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../security/clickjacking.html">
+
+
+    Clickjacking
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/security/p-3-p'), 'expanded': getIsExpanded('concepts/Security/P3P.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../security/p-3-p.html">
+
+
+    P3P
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/security/ddos'), 'expanded': getIsExpanded('concepts/Security/DDOS.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../security/ddos.html">
+
+
+    DDOS
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/security/content-security-policy'), 'expanded': getIsExpanded('concepts/Security/ContentSecurityPolicy.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../security/content-security-policy.html">
+
+
+    Content Security Policy
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/security/strict-transport-security'), 'expanded': getIsExpanded('concepts/Security/StrictTransportSecurity.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../security/strict-transport-security.html">
+
+
+    Strict Transport Security
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/security/xss'), 'expanded': getIsExpanded('concepts/Security/XSS.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../security/xss.html">
+
+
+    XSS
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/security/socket-hijacking'), 'expanded': getIsExpanded('concepts/Security/SocketHijacking.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../security/socket-hijacking.html">
+
+
+    Socket Hijacking
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/services')}">
+          
+<span>
+  
+  <a href="../../Services.html">
+
+
+    Services
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/services/creating-a-service'), 'expanded': getIsExpanded('concepts/Services/CreatingAService.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../services/creating-a-service.html">
+
+
+    Creating a Service
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/testing')}">
+          
+<span>
+  
+  <a href="../../testing.html">
+
+
+    Testing
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/testing/code-coverage'), 'expanded': getIsExpanded('concepts/Testing/CodeCoverage.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../testing/code-coverage.html">
+
+
+    Code Coverage
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/upgrading')}">
+          
+<span>
+  
+  <a href="../../upgrading.html">
+
+
+    Upgrading
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/upgrading/to-v-0-10'), 'expanded': getIsExpanded('concepts/Upgrading/To0.10.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../upgrading/to-v-0-10.html">
+
+
+    To v.0.10
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/upgrading/to-v-0-11'), 'expanded': getIsExpanded('concepts/Upgrading/To0.11.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../upgrading/to-v-0-11.html">
+
+
+    To v0.11
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/upgrading/to-v-0-12'), 'expanded': getIsExpanded('concepts/Upgrading/To0.12.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../upgrading/to-v-0-12.html">
+
+
+    To v0.12
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+
+        <li class="" ng-class="{'current': getIsCurrent('concepts/views')}">
+          
+<span>
+  
+  <a href="../../Views.html">
+
+
+    Views
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+<ul>
+  
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/views/layouts'), 'expanded': getIsExpanded('concepts/Views/Layouts.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../views/layouts.html">
+
+
+    Layouts
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/views/locals'), 'expanded': getIsExpanded('concepts/Views/Locals.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../views/locals.html">
+
+
+    Locals
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/views/partials'), 'expanded': getIsExpanded('concepts/Views/Partials.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../views/partials.html">
+
+
+    Partials
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+
+      <li class="" ng-class="{'current': getIsCurrent('concepts/views/view-engines'), 'expanded': getIsExpanded('concepts/Views/ViewEngines.ejs'), 'folder': false, 'deprecated': false}">
+      
+      
+<span>
+  
+  <a href="../../Views/ViewEngines.html">
+
+
+    View Engines
+
+    
+
+    <i class="current-arrow"><img src="../../../../images/arrow_blue.png"/></i>
+
+    
+  </a>
+</span>
+
+
+
+
+      </li>
+
+    
+</ul>
+
+
+        </li>
+        
+    </ul>
+    <div class="book-banner-wrapper">
+      <div class="book-banner">
+        <img class="meap-cover" src="../../../../images/bookCover.png"/>
+        <h3>We wrote a book!</h3>
+        <p>Get early access to the book<br/> with promotion code: <span>mcneildoc</span></p>
+        <a class="book-link" target="_blank" href="http://www.manning.com/mcneil/">Get the Book</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- For tiny screens (link to file on github instead) -->
+<div class="docs-github-message">
+  <img src="../../../../images/squidford_swimming.png"/>
+  
+  <p>Looks like your screen's a bit too small to read the documentation here. Follow the link below to view the <span>One-to-One</span> docs on GitHub. (Or just try rotating your device.)</p>
+  <a href="https://github.com/balderdashy/sails-docs/blob/master/concepts/ORM/Associations/OnetoOne.md">To GitHub</a>
+  
+</div>
+
+      <div id="push"></div>
+    </div>
+    <div class="bottom" ng-controller="HeaderCtrl" ng-class="{'docs-footer': getIsDocumentationPage()}">
+      <div class="sharing-footer clearfix">
+        <div class="star">
+          <iframe src="http://ghbtns.com/github-btn.html?user=balderdashy&amp;repo=sails&amp;type=watch&amp;count=true"
+          allowtransparency="true" frameborder="0" scrolling="0" width="100" height="20"></iframe>
+          </div>
+
+          <div>
+          <iframe src="http://www.facebook.com/plugins/like.php?href=https://www.facebook.com/sailsjs&amp;width=75&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:86px; height:21px;" allowTransparency="true"></iframe>
+          </div>
+
+          <a href="https://twitter.com/share" class="twitter-share-button" data-text="#sailsjs, the realtime MVC framework for Node.js:" data-url="http://sailsjs.org" data-lang="en"></a>
+
+          <a href="https://twitter.com/sailsjs" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @sailsjs</a>
+
+          <a class="small-button" href="http://sailsjs.org/get-started">Get started</a>
+      </div>
+    </div>
+
+
+    <!--SCRIPTS-->
+    <script src="../../../../dist/production.min.4d5896a5.js"></script>
+    <!--SCRIPTS END-->
+  </body>
+</html>

@@ -1,0 +1,2 @@
+# The robots.txt file is used to control how search engines index your live URLs.
+# See https://support.google.com/webmasters/answer/6062608 for more information.
